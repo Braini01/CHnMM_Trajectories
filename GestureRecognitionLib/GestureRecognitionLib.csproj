@@ -1,0 +1,102 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{669E3BC6-EC36-493D-BE6A-D81BBFA7CF63}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>GestureRecognitionLib</RootNamespace>
+    <AssemblyName>GestureRecognitionLib</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="MoreLinq, Version=1.4.18916.0, Culture=neutral, PublicKeyToken=384d532d7e88985d, processorArchitecture=MSIL">
+      <HintPath>..\packages\morelinq.1.4.0\lib\net35\MoreLinq.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="NDtw, Version=0.2.3.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\NDtw.0.2.3.0\lib\net40\NDtw.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Numerics" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="WobbrockLib">
+      <HintPath>Dollar\WobbrockLib.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="CHnMM\Areas.cs" />
+    <Compile Include="CHnMM\CHnMMRecognitionSystem.cs" />
+    <Compile Include="CHnMM\GestureModelCreator.cs" />
+    <Compile Include="CHnMM\TrajectoryModel.cs" />
+    <Compile Include="CHnMM\SmallestCircleAlgorithm.cs" />
+    <Compile Include="CHnMM\StrokeMap.cs" />
+    <Compile Include="CHnMM\SymbolGenerator.cs" />
+    <Compile Include="CHnMM\DistributionEstimators.cs" />
+    <Compile Include="Dollar\Category.cs" />
+    <Compile Include="Dollar\DollarRecognitionSystem.cs" />
+    <Compile Include="Dollar\NBestList.cs" />
+    <Compile Include="Dollar\Recognizer.cs" />
+    <Compile Include="Dollar\Unistroke.cs" />
+    <Compile Include="CHnMM\LinearInterpolation.cs" />
+    <Compile Include="CHnMM\OutputProbCreators.cs" />
+    <Compile Include="DTW\DTWRecognitionSystem.cs" />
+    <Compile Include="DTW\TrajectoryModel.cs" />
+    <Compile Include="GestureTrace.cs" />
+    <Compile Include="ParameterVariation.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RecognitionSystem.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ModelLib\ModelLib.csproj">
+      <Project>{00480b52-787f-4fb5-913c-219adee9d4b8}</Project>
+      <Name>ModelLib</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Dollar\WobbrockLib.dll" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

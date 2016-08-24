@@ -1,0 +1,472 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="LfS.GestureDatabase.Store" Provider="System.Data.SQLite.EF6" ProviderManifestToken="data source=D:\Dropbox\CodeBackups\LfS\dev\Databases\AllGestures.db" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="DeviceInfos">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="integer" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ScreenW" Type="integer" Nullable="false" />
+          <Property Name="ScreenH" Type="integer" Nullable="false" />
+          <Property Name="UserAgent" Type="nvarchar" MaxLength="2147483647" Nullable="false" />
+          <Property Name="Platform" Type="nvarchar" MaxLength="2147483647" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Gestures">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="integer" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="2147483647" Nullable="false" />
+          <Property Name="User_Id" Type="integer" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Symbols">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="integer" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Symbol" Type="nvarchar" MaxLength="2147483647" Nullable="false" />
+          <Property Name="Time" Type="integer" Nullable="false" />
+          <Property Name="Trace_Id" Type="integer" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Touches">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="integer" Nullable="false" />
+          <Property Name="Time" Type="integer" Nullable="false" />
+          <Property Name="FingerId" Type="integer" Nullable="false" />
+          <Property Name="X" Type="decimal" Precision="53" Scale="0" Nullable="false" />
+          <Property Name="Y" Type="decimal" Precision="53" Scale="0" Nullable="false" />
+          <Property Name="Trace_Id" Type="integer" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TouchFields">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="integer" Nullable="false" />
+          <Property Name="Left" Type="integer" Nullable="false" />
+          <Property Name="Right" Type="integer" Nullable="false" />
+          <Property Name="Top" Type="integer" Nullable="false" />
+          <Property Name="Bottom" Type="integer" Nullable="false" />
+          <Property Name="Width" Type="integer" Nullable="false" />
+          <Property Name="Height" Type="integer" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Traces">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="integer" Nullable="false" />
+          <Property Name="Gesture_Id" Type="integer" Nullable="false" />
+          <Property Name="DeviceInfo_Id" Type="integer" Nullable="false" />
+          <Property Name="TouchField_Id" Type="integer" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Users">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="integer" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="2147483647" Nullable="false" />
+          <Property Name="Username" Type="nvarchar" MaxLength="2147483647" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Gestures_0_0">
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="Gestures" Type="Self.Gestures" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Gestures">
+              <PropertyRef Name="User_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Symbols_0_0">
+          <End Role="Traces" Type="Self.Traces" Multiplicity="1" />
+          <End Role="Symbols" Type="Self.Symbols" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Traces">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Symbols">
+              <PropertyRef Name="Trace_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Touches_0_0">
+          <End Role="Traces" Type="Self.Traces" Multiplicity="1" />
+          <End Role="Touches" Type="Self.Touches" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Traces">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Touches">
+              <PropertyRef Name="Trace_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Traces_0_0">
+          <End Role="TouchFields" Type="Self.TouchFields" Multiplicity="1" />
+          <End Role="Traces" Type="Self.Traces" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TouchFields">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Traces">
+              <PropertyRef Name="TouchField_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Traces_1_0">
+          <End Role="DeviceInfos" Type="Self.DeviceInfos" Multiplicity="1" />
+          <End Role="Traces" Type="Self.Traces" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DeviceInfos">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Traces">
+              <PropertyRef Name="DeviceInfo_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Traces_2_0">
+          <End Role="Gestures" Type="Self.Gestures" Multiplicity="1" />
+          <End Role="Traces" Type="Self.Traces" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Gestures">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Traces">
+              <PropertyRef Name="Gesture_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="LfSGestureDatabaseStoreContainer">
+          <EntitySet Name="DeviceInfos" EntityType="Self.DeviceInfos" store:Type="Tables" />
+          <EntitySet Name="Gestures" EntityType="Self.Gestures" store:Type="Tables" />
+          <EntitySet Name="Symbols" EntityType="Self.Symbols" store:Type="Tables" />
+          <EntitySet Name="Touches" EntityType="Self.Touches" store:Type="Tables" />
+          <EntitySet Name="TouchFields" EntityType="Self.TouchFields" store:Type="Tables" />
+          <EntitySet Name="Traces" EntityType="Self.Traces" store:Type="Tables" />
+          <EntitySet Name="Users" EntityType="Self.Users" store:Type="Tables" />
+          <AssociationSet Name="FK_Gestures_0_0" Association="Self.FK_Gestures_0_0">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Gestures" EntitySet="Gestures" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Symbols_0_0" Association="Self.FK_Symbols_0_0">
+            <End Role="Traces" EntitySet="Traces" />
+            <End Role="Symbols" EntitySet="Symbols" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Touches_0_0" Association="Self.FK_Touches_0_0">
+            <End Role="Traces" EntitySet="Traces" />
+            <End Role="Touches" EntitySet="Touches" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Traces_0_0" Association="Self.FK_Traces_0_0">
+            <End Role="TouchFields" EntitySet="TouchFields" />
+            <End Role="Traces" EntitySet="Traces" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Traces_1_0" Association="Self.FK_Traces_1_0">
+            <End Role="DeviceInfos" EntitySet="DeviceInfos" />
+            <End Role="Traces" EntitySet="Traces" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Traces_2_0" Association="Self.FK_Traces_2_0">
+            <End Role="Gestures" EntitySet="Gestures" />
+            <End Role="Traces" EntitySet="Traces" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="LfS.GestureDatabase" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="DeviceInfo">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ScreenW" Type="Int64" Nullable="false" />
+          <Property Name="ScreenH" Type="Int64" Nullable="false" />
+          <Property Name="UserAgent" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Platform" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Traces" Relationship="Self.FK_Traces_1_0" FromRole="DeviceInfos" ToRole="Traces" />
+        </EntityType>
+        <EntityType Name="Gesture">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="User_Id" Type="Int64" Nullable="false" />
+          <NavigationProperty Name="User" Relationship="Self.FK_Gestures_0_0" FromRole="Gestures" ToRole="Users" />
+          <NavigationProperty Name="Traces" Relationship="Self.FK_Traces_2_0" FromRole="Gestures" ToRole="Traces" />
+        </EntityType>
+        <EntityType Name="Symbol">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Symbol1" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Time" Type="Int64" Nullable="false" />
+          <Property Name="Trace_Id" Type="Int64" Nullable="false" />
+          <NavigationProperty Name="Trace" Relationship="Self.FK_Symbols_0_0" FromRole="Symbols" ToRole="Traces" />
+        </EntityType>
+        <EntityType Name="Touch">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" />
+          <Property Name="Time" Type="Int64" Nullable="false" />
+          <Property Name="FingerId" Type="Int64" Nullable="false" />
+          <Property Name="X" Type="Decimal" Precision="53" Scale="0" Nullable="false" />
+          <Property Name="Y" Type="Decimal" Precision="53" Scale="0" Nullable="false" />
+          <Property Name="Trace_Id" Type="Int64" Nullable="false" />
+          <NavigationProperty Name="Trace" Relationship="Self.FK_Touches_0_0" FromRole="Touches" ToRole="Traces" />
+        </EntityType>
+        <EntityType Name="TouchField">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" />
+          <Property Name="Left" Type="Int64" Nullable="false" />
+          <Property Name="Right" Type="Int64" Nullable="false" />
+          <Property Name="Top" Type="Int64" Nullable="false" />
+          <Property Name="Bottom" Type="Int64" Nullable="false" />
+          <Property Name="Width" Type="Int64" Nullable="false" />
+          <Property Name="Height" Type="Int64" Nullable="false" />
+          <NavigationProperty Name="Traces" Relationship="Self.FK_Traces_0_0" FromRole="TouchFields" ToRole="Traces" />
+        </EntityType>
+        <EntityType Name="Trace">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" />
+          <Property Name="Gesture_Id" Type="Int64" Nullable="false" />
+          <Property Name="DeviceInfo_Id" Type="Int64" Nullable="false" />
+          <Property Name="TouchField_Id" Type="Int64" Nullable="false" />
+          <NavigationProperty Name="DeviceInfo" Relationship="Self.FK_Traces_1_0" FromRole="Traces" ToRole="DeviceInfos" />
+          <NavigationProperty Name="Gesture" Relationship="Self.FK_Traces_2_0" FromRole="Traces" ToRole="Gestures" />
+          <NavigationProperty Name="Symbols" Relationship="Self.FK_Symbols_0_0" FromRole="Traces" ToRole="Symbols" />
+          <NavigationProperty Name="Touches" Relationship="Self.FK_Touches_0_0" FromRole="Traces" ToRole="Touches" />
+          <NavigationProperty Name="TouchField" Relationship="Self.FK_Traces_0_0" FromRole="Traces" ToRole="TouchFields" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Username" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Gestures" Relationship="Self.FK_Gestures_0_0" FromRole="Users" ToRole="Gestures" />
+        </EntityType>
+        <Association Name="FK_Traces_1_0">
+          <End Role="DeviceInfos" Type="Self.DeviceInfo" Multiplicity="1" />
+          <End Role="Traces" Type="Self.Trace" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DeviceInfos">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Traces">
+              <PropertyRef Name="DeviceInfo_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Gestures_0_0">
+          <End Role="Users" Type="Self.User" Multiplicity="1" />
+          <End Role="Gestures" Type="Self.Gesture" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Gestures">
+              <PropertyRef Name="User_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Traces_2_0">
+          <End Role="Gestures" Type="Self.Gesture" Multiplicity="1" />
+          <End Role="Traces" Type="Self.Trace" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Gestures">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Traces">
+              <PropertyRef Name="Gesture_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Symbols_0_0">
+          <End Role="Traces" Type="Self.Trace" Multiplicity="1" />
+          <End Role="Symbols" Type="Self.Symbol" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Traces">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Symbols">
+              <PropertyRef Name="Trace_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Touches_0_0">
+          <End Role="Traces" Type="Self.Trace" Multiplicity="1" />
+          <End Role="Touches" Type="Self.Touch" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Traces">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Touches">
+              <PropertyRef Name="Trace_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Traces_0_0">
+          <End Role="TouchFields" Type="Self.TouchField" Multiplicity="1" />
+          <End Role="Traces" Type="Self.Trace" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TouchFields">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Traces">
+              <PropertyRef Name="TouchField_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="dbEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="DeviceInfos" EntityType="Self.DeviceInfo" />
+          <EntitySet Name="Gestures" EntityType="Self.Gesture" />
+          <EntitySet Name="Symbols" EntityType="Self.Symbol" />
+          <EntitySet Name="Touches" EntityType="Self.Touch" />
+          <EntitySet Name="TouchFields" EntityType="Self.TouchField" />
+          <EntitySet Name="Traces" EntityType="Self.Trace" />
+          <EntitySet Name="Users" EntityType="Self.User" />
+          <AssociationSet Name="FK_Traces_1_0" Association="Self.FK_Traces_1_0">
+            <End Role="DeviceInfos" EntitySet="DeviceInfos" />
+            <End Role="Traces" EntitySet="Traces" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Gestures_0_0" Association="Self.FK_Gestures_0_0">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Gestures" EntitySet="Gestures" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Traces_2_0" Association="Self.FK_Traces_2_0">
+            <End Role="Gestures" EntitySet="Gestures" />
+            <End Role="Traces" EntitySet="Traces" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Symbols_0_0" Association="Self.FK_Symbols_0_0">
+            <End Role="Traces" EntitySet="Traces" />
+            <End Role="Symbols" EntitySet="Symbols" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Touches_0_0" Association="Self.FK_Touches_0_0">
+            <End Role="Traces" EntitySet="Traces" />
+            <End Role="Touches" EntitySet="Touches" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Traces_0_0" Association="Self.FK_Traces_0_0">
+            <End Role="TouchFields" EntitySet="TouchFields" />
+            <End Role="Traces" EntitySet="Traces" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="LfSGestureDatabaseStoreContainer" CdmEntityContainer="dbEntities">
+          <EntitySetMapping Name="DeviceInfos">
+            <EntityTypeMapping TypeName="LfS.GestureDatabase.DeviceInfo">
+              <MappingFragment StoreEntitySet="DeviceInfos">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="ScreenW" ColumnName="ScreenW" />
+                <ScalarProperty Name="ScreenH" ColumnName="ScreenH" />
+                <ScalarProperty Name="UserAgent" ColumnName="UserAgent" />
+                <ScalarProperty Name="Platform" ColumnName="Platform" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Gestures">
+            <EntityTypeMapping TypeName="LfS.GestureDatabase.Gesture">
+              <MappingFragment StoreEntitySet="Gestures">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="User_Id" ColumnName="User_Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Symbols">
+            <EntityTypeMapping TypeName="LfS.GestureDatabase.Symbol">
+              <MappingFragment StoreEntitySet="Symbols">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Symbol1" ColumnName="Symbol" />
+                <ScalarProperty Name="Time" ColumnName="Time" />
+                <ScalarProperty Name="Trace_Id" ColumnName="Trace_Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Touches">
+            <EntityTypeMapping TypeName="LfS.GestureDatabase.Touch">
+              <MappingFragment StoreEntitySet="Touches">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Time" ColumnName="Time" />
+                <ScalarProperty Name="FingerId" ColumnName="FingerId" />
+                <ScalarProperty Name="X" ColumnName="X" />
+                <ScalarProperty Name="Y" ColumnName="Y" />
+                <ScalarProperty Name="Trace_Id" ColumnName="Trace_Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TouchFields">
+            <EntityTypeMapping TypeName="LfS.GestureDatabase.TouchField">
+              <MappingFragment StoreEntitySet="TouchFields">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Left" ColumnName="Left" />
+                <ScalarProperty Name="Right" ColumnName="Right" />
+                <ScalarProperty Name="Top" ColumnName="Top" />
+                <ScalarProperty Name="Bottom" ColumnName="Bottom" />
+                <ScalarProperty Name="Width" ColumnName="Width" />
+                <ScalarProperty Name="Height" ColumnName="Height" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Traces">
+            <EntityTypeMapping TypeName="LfS.GestureDatabase.Trace">
+              <MappingFragment StoreEntitySet="Traces">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Gesture_Id" ColumnName="Gesture_Id" />
+                <ScalarProperty Name="DeviceInfo_Id" ColumnName="DeviceInfo_Id" />
+                <ScalarProperty Name="TouchField_Id" ColumnName="TouchField_Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="LfS.GestureDatabase.User">
+              <MappingFragment StoreEntitySet="Users">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Username" ColumnName="Username" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

@@ -1,0 +1,78 @@
+﻿<Window x:Class="Visualizer.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Visualizer"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="839" Width="1024" Background="{DynamicResource {x:Static SystemColors.AppWorkspaceBrushKey}}">
+    <Grid>
+        <GroupBox x:Name="grpB_StrokeMap" Header="StrokeMap" HorizontalAlignment="Left" Margin="10,200,0,0" VerticalAlignment="Top" Height="600" Width="600">
+            <Canvas x:Name="DrawCanvas" Margin="0" Background="White"/>
+        </GroupBox>
+
+        <GroupBox x:Name="grpB_Parameter" Header="Recognition System Parameter" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Height="185" Width="369">
+            <Grid Margin="0,10,0,0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <StackPanel >
+                    <Label x:Name="lbl_tolF" Content="toleranceFactor" Margin="0" Padding="4,0,0,0" Height="20"/>
+                    <Label x:Name="lbl_minRadius" Content="minRadius" Margin="0" Padding="4,0,0,0" Height="20"/>
+                    <Label x:Name="lbl_areaPointDistance" Content="areaPointDistance" Margin="0" Padding="4,0,0,0" Height="20"/>
+                    <Label x:Name="lbl_hitProbability" Content="hitProbability" Margin="0" Padding="4,0,0,0" Height="20"/>
+                    <Label x:Name="lbl_nAreas" Content="nAreas" Margin="0" Padding="4,0,0,0" Height="20"/>
+                    <Label x:Name="lbl_distEstimator" Content="distributionEstimator" Margin="0" Padding="4,0,0,0" Height="20"/>
+                    <CheckBox x:Name="cb_useFixedAreaNumber" Content="FixedAreaNumber" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+                    <CheckBox x:Name="cb_SmallestCircle" Content="UseSmallestCircle" HorizontalAlignment="Left" VerticalAlignment="Top" IsChecked="True"/>
+                </StackPanel>
+                <StackPanel Grid.Column="1" >
+                    <TextBox x:Name="tb_toleranceFactor" Margin="0,1,4,1" TextWrapping="Wrap" Text="1,5" Height="18" Padding="0"/>
+                    <TextBox x:Name="tb_minRadius" Margin="0,1,4,1" TextWrapping="Wrap" Text="0,05" Height="18" Padding="0"/>
+                    <TextBox x:Name="tb_areaPointDistance" Margin="0,1,4,1" TextWrapping="Wrap" Text="0,05" Height="18" Padding="0"/>
+                    <TextBox x:Name="tb_hitProbability" Margin="0,1,4,1" TextWrapping="Wrap" Text="0,9" Height="18" Padding="0"/>
+                    <TextBox x:Name="tb_nAreas" Margin="0,1,4,1" TextWrapping="Wrap" Text="10" Height="18" Padding="0"/>
+                    <ComboBox x:Name="cmb_distEst" Height="18" Margin="0,1,4,1" SelectedIndex="0" Padding="6,0,0,0" >
+                        <ComboBoxItem Content="NaiveUniformEstimator"/>
+                        <ComboBoxItem Content="NormalEstimator"/>
+                    </ComboBox>
+                    <CheckBox x:Name="cb_TranslationInvariant" Content="Translationinvariant" HorizontalAlignment="Left" VerticalAlignment="Top" IsChecked="True"/>
+                    <CheckBox x:Name="cb_AdaptiveTolerance" Content="UseAdaptiveTolerance" HorizontalAlignment="Left" VerticalAlignment="Top" IsChecked="True"/>
+                </StackPanel>
+            </Grid>
+
+        </GroupBox>
+        <GroupBox x:Name="grpB_Settings" Header="Test Settings" HorizontalAlignment="Left" Margin="384,10,0,0" VerticalAlignment="Top" Height="185" Width="386">
+            <Grid Margin="0,10,0,0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <StackPanel >
+                    <Label x:Name="lbl_nSubsets" Content="nSubsets" Margin="0" Padding="4,0,0,0" Height="20"/>
+                    <Label x:Name="lbl_SubsetIndex" Content="Subset Index" Margin="0" Padding="4,0,0,0" Height="20"/>
+                    <Label x:Name="lbl_GestureSet" Content="GestureSet" Margin="0" Padding="4,0,0,0" Height="20"/>
+                    <CheckBox x:Name="cb_shuffled" Content="Shuffled Subsets" IsChecked="True"/>
+                    <Button x:Name="btn_CreateSystem" Content="Create Recognition System" Click="btn_CreateSystem_Click"/>
+                    <Button x:Name="btn_ClearCanvas" Content="Clear Canvas" Click="btn_ClearCanvas_Click"/>
+                </StackPanel>
+                <StackPanel Grid.Column="1">
+                    <TextBox x:Name="tb_nSubsets" Margin="0,1,4,1" TextWrapping="Wrap" Text="2" Height="18" Padding="0"/>
+                    <TextBox x:Name="tb_SubsetIndex" Margin="0,1,4,1" TextWrapping="Wrap" Text="0" Height="18" Padding="0"/>
+                    <ComboBox x:Name="cmb_gestureSet" Height="18" Margin="0,1,4,1" SelectedIndex="0" Padding="6,0,0,0" >
+                        <ComboBoxItem Content="TimSimple"/>
+                        <ComboBoxItem Content="TimAdvanced"/>
+                    </ComboBox>
+                </StackPanel>
+            </Grid>
+        </GroupBox>
+        <GroupBox x:Name="grpB_GestureList" Header="Gestures" HorizontalAlignment="Left" Margin="775,10,0,0" VerticalAlignment="Top" Height="185" Width="231">
+            <ListBox x:Name="lb_Gestures" Margin="0" SelectionChanged="lb_Gestures_SelectionChanged" MouseDoubleClick="lb_Gestures_MouseDoubleClick"/>
+        </GroupBox>
+        <GroupBox x:Name="grpB_Transitiondata" Header="TransitionData" HorizontalAlignment="Left" Margin="615,200,0,0" VerticalAlignment="Top" Height="600" Width="391">
+            <DataGrid x:Name="dg_Transitions"/>
+        </GroupBox>
+
+    </Grid>
+</Window>

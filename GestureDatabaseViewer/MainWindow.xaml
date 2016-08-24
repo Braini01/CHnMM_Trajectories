@@ -1,0 +1,64 @@
+﻿<Window
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:wf="clr-namespace:System.Windows.Forms.DataVisualization.Charting;assembly=System.Windows.Forms.DataVisualization"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:System="clr-namespace:System;assembly=mscorlib" mc:Ignorable="d" x:Class="LfS.GestureDatabaseViewer.MainWindow"
+        Title="MainWindow" Height="870" Width="1024">
+    <Grid>
+        <TreeView Height="800" HorizontalAlignment="Left" Margin="12,12,0,0" x:Name="treeView1" VerticalAlignment="Top" Width="312" ItemsSource="{Binding Users}" SelectedItemChanged="treeView1_SelectedItemChanged">
+            <TreeView.ItemContainerStyle>
+                <Style TargetType="{x:Type TreeViewItem}">
+                    <Setter Property="IsExpanded" Value="{Binding IsExpanded, Mode=TwoWay}" />
+                    <Setter Property="IsSelected" Value="{Binding IsSelected, Mode=TwoWay}" />
+                    <Setter Property="FontWeight" Value="Normal" />
+                    <Style.Triggers>
+                        <Trigger Property="IsSelected" Value="True">
+                            <Setter Property="FontWeight" Value="Bold" />
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </TreeView.ItemContainerStyle>
+
+            <TreeView.ItemTemplate>
+                <HierarchicalDataTemplate DataType="TreeViewItemViewModel" ItemsSource="{Binding Children}" >
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="{Binding Name}" />
+                    </StackPanel>
+                </HierarchicalDataTemplate>
+            </TreeView.ItemTemplate>
+        </TreeView>
+        <TabControl HorizontalAlignment="Left" Height="800" Margin="330,12,0,0" VerticalAlignment="Top" Width="676">
+            <TabItem Header="Trace" d:IsLocked="True">
+                <Grid>
+                    <Canvas Height="629" x:Name="canvas1" VerticalAlignment="Top" Width="660" >
+                        <Image Height="629"  x:Name="image1" Width="660" DataContext="{Binding}" Source="/GestureDatabaseViewer;component/canvasBG.png" />
+                    </Canvas>
+                    <CheckBox x:Name="cbKeepDrawings" Content="Keep Drawings" HorizontalAlignment="Left" Margin="10,634,0,0" VerticalAlignment="Top"/>
+                    <Button x:Name="btnSaveCanvas" Content="Save Canvas as Image" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="10,634,0,0" Click="btnSaveCanvas_Click" />
+                </Grid>
+            </TabItem>
+            <TabItem Header="Attributes">
+                <Grid>
+                    <WindowsFormsHost HorizontalAlignment="Left" Height="705" Margin="0,0,0,0" VerticalAlignment="Top" Width="656">
+                        <wf:Chart x:Name="chartBox">
+                            <wf:Chart.ChartAreas>
+                                <wf:ChartArea x:Name="chartArea" />
+                            </wf:Chart.ChartAreas>
+                        </wf:Chart>
+                    </WindowsFormsHost>
+                    <Button Content="Clear Chart" HorizontalAlignment="Left" Margin="10,736,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click"/>
+                    <ComboBox x:Name="cbFeature" HorizontalAlignment="Left" Margin="420,736,0,0" VerticalAlignment="Top" Width="151" ItemsSource="{Binding Mode=OneWay}" DisplayMemberPath="Name" SelectedValuePath="Feature"/>
+                    <Button Content="Add Graph" HorizontalAlignment="Left" Margin="90,736,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click_1"/>
+                    <ComboBox x:Name="cbGraphType" HorizontalAlignment="Left" Margin="265,736,0,0" VerticalAlignment="Top" Width="150">
+                        <ComboBoxItem Content="Points"/>
+                        <ComboBoxItem Content="Linear"/>
+                        <ComboBoxItem Content="Spline"/>
+                    </ComboBox>
+                    <Button x:Name="btnNormalize" Content="Normalize" Margin="170,736,406,10" Click="normalizeTime" />
+                    <CheckBox x:Name="cbSmooth" Content="Smoothing" Margin="576,738,10,10" />
+                </Grid>
+            </TabItem>
+        </TabControl>
+
+    </Grid>
+</Window>

@@ -1,0 +1,160 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25123.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GestureCollectingInterface", "GestureCollectingInterface\GestureCollectingInterface.csproj", "{B3A7E77E-2FE1-4E82-8FB3-6A48440E1845}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GestureDatabase", "GestureDatabase\GestureDatabase.csproj", "{959634A6-C6E2-4059-A59B-AA19BC1FD565}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ModelLib", "ModelLib\ModelLib.csproj", "{00480B52-787F-4FB5-913C-219ADEE9D4B8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GestureRecognitionTests", "GestureRecognitionTests\GestureRecognitionTests.csproj", "{A2E9394C-E6FC-454F-8DA1-9AFEC78FA936}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GestureDatabaseViewer", "GestureDatabaseViewer\GestureDatabaseViewer.csproj", "{8D24DDFA-29AA-42A0-AEF4-A8F065A76A2D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GestureRecognitionLib", "GestureRecognitionLib\GestureRecognitionLib.csproj", "{669E3BC6-EC36-493D-BE6A-D81BBFA7CF63}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Databases", "Databases", "{08E3C22E-108A-4197-B369-D8044B43DDF6}"
+	ProjectSection(SolutionItems) = preProject
+		Databases\AllGestures.db = Databases\AllGestures.db
+		Databases\AllGestures_adapted(20 examples for every 1FingerGesture).db = Databases\AllGestures_adapted(20 examples for every 1FingerGesture).db
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Visualizer", "Visualizer\Visualizer.csproj", "{95A9093D-045A-437B-956D-6886E84CF30F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SignatureDatabase", "SignatureDatabase\SignatureDatabase.csproj", "{73087975-0E82-49F5-9E78-529744E581BE}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Debug|Mixed Platforms = Debug|Mixed Platforms
+		Debug|x86 = Debug|x86
+		Release|Any CPU = Release|Any CPU
+		Release|Mixed Platforms = Release|Mixed Platforms
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B3A7E77E-2FE1-4E82-8FB3-6A48440E1845}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B3A7E77E-2FE1-4E82-8FB3-6A48440E1845}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B3A7E77E-2FE1-4E82-8FB3-6A48440E1845}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{B3A7E77E-2FE1-4E82-8FB3-6A48440E1845}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{B3A7E77E-2FE1-4E82-8FB3-6A48440E1845}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{B3A7E77E-2FE1-4E82-8FB3-6A48440E1845}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B3A7E77E-2FE1-4E82-8FB3-6A48440E1845}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B3A7E77E-2FE1-4E82-8FB3-6A48440E1845}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{B3A7E77E-2FE1-4E82-8FB3-6A48440E1845}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{B3A7E77E-2FE1-4E82-8FB3-6A48440E1845}.Release|x86.ActiveCfg = Release|Any CPU
+		{959634A6-C6E2-4059-A59B-AA19BC1FD565}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{959634A6-C6E2-4059-A59B-AA19BC1FD565}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{959634A6-C6E2-4059-A59B-AA19BC1FD565}.Debug|Mixed Platforms.ActiveCfg = Debug|x86
+		{959634A6-C6E2-4059-A59B-AA19BC1FD565}.Debug|Mixed Platforms.Build.0 = Debug|x86
+		{959634A6-C6E2-4059-A59B-AA19BC1FD565}.Debug|x86.ActiveCfg = Debug|x86
+		{959634A6-C6E2-4059-A59B-AA19BC1FD565}.Debug|x86.Build.0 = Debug|x86
+		{959634A6-C6E2-4059-A59B-AA19BC1FD565}.Release|Any CPU.ActiveCfg = Release|x86
+		{959634A6-C6E2-4059-A59B-AA19BC1FD565}.Release|Mixed Platforms.ActiveCfg = Release|x86
+		{959634A6-C6E2-4059-A59B-AA19BC1FD565}.Release|Mixed Platforms.Build.0 = Release|x86
+		{959634A6-C6E2-4059-A59B-AA19BC1FD565}.Release|x86.ActiveCfg = Release|x86
+		{959634A6-C6E2-4059-A59B-AA19BC1FD565}.Release|x86.Build.0 = Release|x86
+		{00480B52-787F-4FB5-913C-219ADEE9D4B8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{00480B52-787F-4FB5-913C-219ADEE9D4B8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{00480B52-787F-4FB5-913C-219ADEE9D4B8}.Debug|Mixed Platforms.ActiveCfg = Debug|x86
+		{00480B52-787F-4FB5-913C-219ADEE9D4B8}.Debug|Mixed Platforms.Build.0 = Debug|x86
+		{00480B52-787F-4FB5-913C-219ADEE9D4B8}.Debug|x86.ActiveCfg = Debug|x86
+		{00480B52-787F-4FB5-913C-219ADEE9D4B8}.Debug|x86.Build.0 = Debug|x86
+		{00480B52-787F-4FB5-913C-219ADEE9D4B8}.Release|Any CPU.ActiveCfg = Release|x86
+		{00480B52-787F-4FB5-913C-219ADEE9D4B8}.Release|Mixed Platforms.ActiveCfg = Release|x86
+		{00480B52-787F-4FB5-913C-219ADEE9D4B8}.Release|Mixed Platforms.Build.0 = Release|x86
+		{00480B52-787F-4FB5-913C-219ADEE9D4B8}.Release|x86.ActiveCfg = Release|x86
+		{00480B52-787F-4FB5-913C-219ADEE9D4B8}.Release|x86.Build.0 = Release|x86
+		{A2E9394C-E6FC-454F-8DA1-9AFEC78FA936}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A2E9394C-E6FC-454F-8DA1-9AFEC78FA936}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A2E9394C-E6FC-454F-8DA1-9AFEC78FA936}.Debug|Mixed Platforms.ActiveCfg = Debug|x86
+		{A2E9394C-E6FC-454F-8DA1-9AFEC78FA936}.Debug|Mixed Platforms.Build.0 = Debug|x86
+		{A2E9394C-E6FC-454F-8DA1-9AFEC78FA936}.Debug|x86.ActiveCfg = Debug|x86
+		{A2E9394C-E6FC-454F-8DA1-9AFEC78FA936}.Debug|x86.Build.0 = Debug|x86
+		{A2E9394C-E6FC-454F-8DA1-9AFEC78FA936}.Release|Any CPU.ActiveCfg = Release|x86
+		{A2E9394C-E6FC-454F-8DA1-9AFEC78FA936}.Release|Mixed Platforms.ActiveCfg = Release|x86
+		{A2E9394C-E6FC-454F-8DA1-9AFEC78FA936}.Release|Mixed Platforms.Build.0 = Release|x86
+		{A2E9394C-E6FC-454F-8DA1-9AFEC78FA936}.Release|x86.ActiveCfg = Release|x86
+		{A2E9394C-E6FC-454F-8DA1-9AFEC78FA936}.Release|x86.Build.0 = Release|x86
+		{8D24DDFA-29AA-42A0-AEF4-A8F065A76A2D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8D24DDFA-29AA-42A0-AEF4-A8F065A76A2D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8D24DDFA-29AA-42A0-AEF4-A8F065A76A2D}.Debug|Mixed Platforms.ActiveCfg = Debug|x86
+		{8D24DDFA-29AA-42A0-AEF4-A8F065A76A2D}.Debug|Mixed Platforms.Build.0 = Debug|x86
+		{8D24DDFA-29AA-42A0-AEF4-A8F065A76A2D}.Debug|x86.ActiveCfg = Debug|x86
+		{8D24DDFA-29AA-42A0-AEF4-A8F065A76A2D}.Debug|x86.Build.0 = Debug|x86
+		{8D24DDFA-29AA-42A0-AEF4-A8F065A76A2D}.Release|Any CPU.ActiveCfg = Release|x86
+		{8D24DDFA-29AA-42A0-AEF4-A8F065A76A2D}.Release|Mixed Platforms.ActiveCfg = Release|x86
+		{8D24DDFA-29AA-42A0-AEF4-A8F065A76A2D}.Release|Mixed Platforms.Build.0 = Release|x86
+		{8D24DDFA-29AA-42A0-AEF4-A8F065A76A2D}.Release|x86.ActiveCfg = Release|x86
+		{8D24DDFA-29AA-42A0-AEF4-A8F065A76A2D}.Release|x86.Build.0 = Release|x86
+		{669E3BC6-EC36-493D-BE6A-D81BBFA7CF63}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{669E3BC6-EC36-493D-BE6A-D81BBFA7CF63}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{669E3BC6-EC36-493D-BE6A-D81BBFA7CF63}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{669E3BC6-EC36-493D-BE6A-D81BBFA7CF63}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{669E3BC6-EC36-493D-BE6A-D81BBFA7CF63}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{669E3BC6-EC36-493D-BE6A-D81BBFA7CF63}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{669E3BC6-EC36-493D-BE6A-D81BBFA7CF63}.Release|Any CPU.Build.0 = Release|Any CPU
+		{669E3BC6-EC36-493D-BE6A-D81BBFA7CF63}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{669E3BC6-EC36-493D-BE6A-D81BBFA7CF63}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{669E3BC6-EC36-493D-BE6A-D81BBFA7CF63}.Release|x86.ActiveCfg = Release|Any CPU
+		{95A9093D-045A-437B-956D-6886E84CF30F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{95A9093D-045A-437B-956D-6886E84CF30F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{95A9093D-045A-437B-956D-6886E84CF30F}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{95A9093D-045A-437B-956D-6886E84CF30F}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{95A9093D-045A-437B-956D-6886E84CF30F}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{95A9093D-045A-437B-956D-6886E84CF30F}.Debug|x86.Build.0 = Debug|Any CPU
+		{95A9093D-045A-437B-956D-6886E84CF30F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{95A9093D-045A-437B-956D-6886E84CF30F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{95A9093D-045A-437B-956D-6886E84CF30F}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{95A9093D-045A-437B-956D-6886E84CF30F}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{95A9093D-045A-437B-956D-6886E84CF30F}.Release|x86.ActiveCfg = Release|Any CPU
+		{95A9093D-045A-437B-956D-6886E84CF30F}.Release|x86.Build.0 = Release|Any CPU
+		{73087975-0E82-49F5-9E78-529744E581BE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{73087975-0E82-49F5-9E78-529744E581BE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{73087975-0E82-49F5-9E78-529744E581BE}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{73087975-0E82-49F5-9E78-529744E581BE}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{73087975-0E82-49F5-9E78-529744E581BE}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{73087975-0E82-49F5-9E78-529744E581BE}.Debug|x86.Build.0 = Debug|Any CPU
+		{73087975-0E82-49F5-9E78-529744E581BE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{73087975-0E82-49F5-9E78-529744E581BE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{73087975-0E82-49F5-9E78-529744E581BE}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{73087975-0E82-49F5-9E78-529744E581BE}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{73087975-0E82-49F5-9E78-529744E581BE}.Release|x86.ActiveCfg = Release|Any CPU
+		{73087975-0E82-49F5-9E78-529744E581BE}.Release|x86.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(TeamFoundationVersionControl) = preSolution
+		SccNumberOfProjects = 9
+		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccTeamFoundationServer = https://braini.visualstudio.com/defaultcollection
+		SccLocalPath0 = .
+		SccProjectUniqueName1 = GestureCollectingInterface\\GestureCollectingInterface.csproj
+		SccProjectName1 = GestureCollectingInterface
+		SccLocalPath1 = GestureCollectingInterface
+		SccProjectUniqueName2 = GestureDatabase\\GestureDatabase.csproj
+		SccProjectName2 = GestureDatabase
+		SccLocalPath2 = GestureDatabase
+		SccProjectUniqueName3 = GestureDatabaseViewer\\GestureDatabaseViewer.csproj
+		SccProjectName3 = GestureDatabaseViewer
+		SccLocalPath3 = GestureDatabaseViewer
+		SccProjectUniqueName4 = GestureRecognitionLib\\GestureRecognitionLib.csproj
+		SccProjectName4 = GestureRecognitionLib
+		SccLocalPath4 = GestureRecognitionLib
+		SccProjectUniqueName5 = GestureRecognitionTests\\GestureRecognitionTests.csproj
+		SccProjectName5 = GestureRecognitionTests
+		SccLocalPath5 = GestureRecognitionTests
+		SccProjectUniqueName6 = ModelLib\\ModelLib.csproj
+		SccProjectName6 = ModelLib
+		SccLocalPath6 = ModelLib
+		SccProjectUniqueName7 = Visualizer\\Visualizer.csproj
+		SccProjectName7 = Visualizer
+		SccLocalPath7 = Visualizer
+		SccProjectUniqueName8 = SignatureDatabase\\SignatureDatabase.csproj
+		SccProjectName8 = SignatureDatabase
+		SccLocalPath8 = SignatureDatabase
+	EndGlobalSection
+EndGlobal
